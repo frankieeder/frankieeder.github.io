@@ -67,8 +67,9 @@ function updateNav() {
         }
     }
     // Expand relevant nav dropdowns if the filter is found
-    var hierarchy = [];
+    var hierarchy;
     if (targetLi) {
+        heirarchy = [];
         // Expand the target and parents
         while (targetLi.tagName == 'LI') {
             var txt = targetLi.id;
@@ -77,7 +78,10 @@ function updateNav() {
             targetLi.classList.remove('nav_inactive');
             targetLi = targetLi.parentNode.parentNode; // heirarchy parent is two DOM levels up
         }
+    } else { // If the filter is not found in the menu (i.e. is a specific piece) we just return that for the URL.
+        heirarchy = [CURRENT_FILTER];
     }
+
     return hierarchy;
 }
 
